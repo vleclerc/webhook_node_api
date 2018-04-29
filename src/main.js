@@ -26,7 +26,7 @@ api.use(cors(corsOptions))
 //index
 api.get('/', function(req, res) {
         console.log(req.body);
-        res.json({apiName:apiName, apiPort:apiPort, localRepository:localRepository, eventPullRoute:eventPullRoute});
+        res.json({apiName:apiName, apiPort:apiPort, localRepository:localRepositoryPath, eventPullRoute:eventPullRoute});
 });
 
 //pull event
