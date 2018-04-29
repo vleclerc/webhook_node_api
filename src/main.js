@@ -18,7 +18,7 @@ var api = express();
 var apiName = 'webhook_node_api';
 var apiPort = 81;
 
-var host = os.hostname()+':'+apiPort;
+var host = os.hostname();
 
 var deployConf = {
   host : host,
