@@ -14,6 +14,6 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node src/main.js"
+    "start": "nohup node src/main.js &"
   }
 }
