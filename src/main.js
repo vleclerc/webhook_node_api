@@ -15,7 +15,7 @@ var api = express();
 
 var apiName = 'webhook_node_api';
 var apiPort = 81;
-var localRepositoryPath = '/home/pi/raspibar';
+var localRepositoryPath = '/home/pi/code/raspibar';
 var eventPullRoute = '/payload';
 
 api.set( 'port', apiPort );
