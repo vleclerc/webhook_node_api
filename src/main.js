@@ -10,13 +10,22 @@ var corsOptions = {
    origin: '*'
 }
 
+var os = require('os');
+
 var express = require('express');
 var api = express();
 
 var apiName = 'webhook_node_api';
 var apiPort = 81;
-var localRepositoryPath = '/home/pi/code/raspibar';
-var eventPullRoute = '/payload';
+
+var host = os.hostname()+':'+apiPort;
+
+var deployConf = {
+  host : host,
+  port : apiPort,
+  localRepositoryPath : '/home/pi/code/raspibar',
+  eventPullRoute : '/payload'
+};
 
 api.set( 'port', apiPort );
 api.use(urlencodedParser);
@@ -26,14 +35,14 @@ api.use(cors(corsOptions))
 //index
 api.get('/', function(req, res) {
         console.log(req.body);
-        res.json({apiName:apiName, apiPort:apiPort, localRepository:localRepositoryPath, eventPullRoute:eventPullRoute});
+        res.json(deployConf);
 });
 
 //pull event
 api.post(eventPullRoute, urlencodedParser, function(req, res) {
   console.log(req.body.pusher.name + ' just pushed to ' + req.body.repository.name);
-  console.log('pulling code in '+localRepositoryPath);
-  exec('git -C ' + localRepositoryPath + ' pull -f', execCallback);
+  console.log('pulling code in '+deployConf.localRepositoryPath);
+  exec('git -C ' + deployConf.localRepositoryPath + ' pull -f', execCallback);
   res.sendStatus(200);
 });
 
