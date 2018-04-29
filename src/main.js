@@ -24,7 +24,7 @@ var deployConf = {
   host : host,
   port : apiPort,
   localRepositoryPath : '/home/pi/code/raspibar',
-  eventPullRoute : '/payload'
+  eventPullRoute : '/webhook'
 };
 
 api.set( 'port', apiPort );
