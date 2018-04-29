@@ -39,7 +39,7 @@ api.get('/', function(req, res) {
 });
 
 //pull event
-api.post(eventPullRoute, urlencodedParser, function(req, res) {
+api.post(deployConf.eventPullRoute, urlencodedParser, function(req, res) {
   console.log(req.body.pusher.name + ' just pushed to ' + req.body.repository.name);
   console.log('pulling code in '+deployConf.localRepositoryPath);
   exec('git -C ' + deployConf.localRepositoryPath + ' pull -f', execCallback);
